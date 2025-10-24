@@ -21,7 +21,8 @@ PRODUCT_NAME := voltage_asteroids
 PRODUCT_GMS_CLIENTID_BASE := android-nothing
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildFingerprint=Nothing/Asteroids/Asteroids:14/UKQ1.241011.001/2507171803:user/release-keys \
+    BuildDesc="qssi_64-user 16 BQ2A.250721.001-BP2A.250605.031.A3 2510211539 release-keys" \
+    BuildFingerprint=Nothing/Asteroids/Asteroids:16/BQ2A.250721.001-BP2A.250605.031.A3/2510211539:user/release-keys \
     DeviceName=Asteroids \
     DeviceProduct=Asteroids \
     SystemDevice=Asteroids \

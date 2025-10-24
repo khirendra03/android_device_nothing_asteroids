@@ -45,6 +45,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.opengles.deqp.level-2023-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.opengles.deqp.level.xml \
     frameworks/native/data/etc/android.software.vulkan.deqp.level-2023-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml
 
+PRODUCT_VENDOR_PROPERTIES += \
+    graphics.gpu.profiler.support=true \
+    ro.opengles.version=196610
 
 # Audio
 AUDIO_HAL_DIR := hardware/qcom-caf/sm8650/audio/primary-hal
@@ -102,6 +105,36 @@ PRODUCT_PACKAGES += \
     libvolumelistener \
     sound_trigger.primary.volcano
 
+PRODUCT_PRODUCT_PROPERTIES += \
+    audio.offload.min.duration.secs=30 \
+    audio.timecheck.timeout_duration_ms=8000 \
+    media.stagefright.audio.deep=false \
+    ro.af.client_heap_size_kbyte=7168 \
+    ro.audio.monitorRotation=true
+
+PRODUCT_VENDOR_PROPERTIES += \
+    aaudio.hw_burst_min_usec=2000 \
+    aaudio.mmap_exclusive_policy=2 \
+    aaudio.mmap_policy=2 \
+    af.fast_track_multiplier=1 \
+    audio.deep_buffer.media=true \
+    audio.offload.video=true \
+    persist.bluetooth.a2dp_offload.disabled=false \
+    ro.af.client_heap_size_kbyte=7168 \
+    ro.audio.flinger_standbytime_ms=2000 \
+    ro.bluetooth.a2dp_offload.supported=true \
+    vendor.audio.adm.buffering.ms=2 \
+    vendor.audio.feature.a2dp_offload.enable=true \
+    vendor.audio.feature.afe_proxy.enable=true \
+    vendor.audio.feature.battery_listener.enable=true \
+    vendor.audio.feature.hfp.enable=true \
+    vendor.audio.feature.kpi_optimize.enable=true \
+    vendor.audio.offload.buffer.size.kb=32 \
+    vendor.audio.offload.playspeed=true \
+    vendor.audio.ull_record_period_multiplier=2 \
+    vendor.audio.volume.headset.gain.depcal=true \
+    vendor.audio_hal.period_size=192
+
 # Biometrics
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
@@ -110,6 +143,55 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml
+
+
+PRODUCT_PRODUCT_PROPERTIES += \
+    bluetooth.profile.a2dp.source.enabled=true \
+    bluetooth.profile.avrcp.target.enabled=true \
+    bluetooth.profile.avrcp.controller.enabled=true \
+    bluetooth.profile.hfp.ag.enabled=true \
+    bluetooth.profile.gatt.enabled=true \
+    bluetooth.profile.hid.host.enabled=true \
+    bluetooth.profile.hid.device.enabled=true \
+    bluetooth.profile.map.server.enabled=true \
+    bluetooth.profile.opp.enabled=true \
+    bluetooth.profile.pbap.server.enabled=true \
+    bluetooth.device_id.vendor_id=0x001D
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    bluetooth.core.le.max_number_of_concurrent_connections=10 \
+    bluetooth.device.class_of_device=90,2,12 \
+    bluetooth.hfp.codec_aptx_voice.enabled=true \
+    bluetooth.hfp.swb.aptx.power_management.enabled=true \
+    bluetooth.leaudio.dual_bidirection_swb.supported=true \
+    bluetooth.profile.pbap.sim.enabled=true \
+    bluetooth.profile.pan.nap.enabled=true \
+    bluetooth.profile.pan.panu.enabled=true \
+    bluetooth.profile.sap.server.enabled=true \
+    persist.bluetooth.leaudio.allow.multiple.contexts=false \
+    persist.bluetooth.leaudio.notify.idle.during.call=true \
+    persist.bluetooth.leaudio_offload.disabled=false \
+    ro.bluetooth.leaudio_offload.supported=true
+
+PRODUCT_VENDOR_PROPERTIES += \
+    bluetooth.profile.bap.broadcast.assist.enabled=true \
+    bluetooth.profile.bap.broadcast.source.enabled=true \
+    bluetooth.profile.bap.unicast.client.enabled=true \
+    bluetooth.profile.bas.client.enabled=true \
+    bluetooth.profile.ccp.server.enabled=true \
+    bluetooth.profile.csip.set_coordinator.enabled=true \
+    bluetooth.profile.hap.client.enabled=true \
+    bluetooth.profile.mcp.server.enabled=true \
+    bluetooth.profile.vcp.controller.enabled=true \
+    persist.sys.fflag.override.settings_bluetooth_hearing_aid=true \
+    persist.vendor.bluetooth.modem_nv_support=true \
+    persist.vendor.qcom.bluetooth.a2dp_mcast_test.enabled=false \
+    persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac-aptxadaptiver2 \
+    persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled=true \
+    persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support=true \
+    persist.vendor.qcom.bluetooth.scram.enabled=false \
+    persist.vendor.qcom.bluetooth.twsp_state.enabled=false \
+    vendor.hw.fm.init=0
 
 # Boot Control
 PRODUCT_PACKAGES += \
@@ -126,6 +208,30 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.config-V2-ndk.vendor
+
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.camerax.extensions.enabled=true
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    vendor.camera.aux.packagelist=com.nothing.camera,org.lineageos.aperture,org.lineageos.aperture.dev
+
+PRODUCT_VENDOR_PROPERTIES += \
+    camera.disable_zsl_mode=1 \
+    ro.camera.enableCamera1MaxZsl=1 \
+    ro.camera.disableHeicUltraHDR=true
+
+# Charger
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.charger.enable_suspend=1
+
+# DPM
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    persist.vendor.dpm.feature=11
+
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.dpm.vndr.feature=11 \
+    persist.vendor.dpm.vndr.halservice.enable=1 \
+    persist.vendor.dpm.vndr.idletimer.mode=default
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -188,6 +294,46 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml
 
+# Graphics
+$(call soong_config_set,angle,angle_in_vendor,true)
+
+PRODUCT_REQUIRES_INSECURE_EXECMEM_FOR_SWIFTSHADER := true
+
+PRODUCT_PACKAGES += \
+    libEGL_angle \
+    libGLESv1_CM_angle \
+    libGLESv2_angle \
+    vulkan.pastel
+
+PRODUCT_VENDOR_PROPERTIES += \
+    debug.angle.feature_overrides_enabled=preferLinearFilterForYUV:mapUnspecifiedColorSpaceToPassThrough \
+    debug.graphics.game_default_frame_rate.disabled=0 \
+    debug.sf.auto_latch_unsignaled=1 \
+    debug.sf.early.app.duration=13666666 \
+    debug.sf.early.sf.duration=10500000 \
+    debug.sf.earlyGl.app.duration=13666666 \
+    debug.sf.earlyGl.sf.duration=10500000 \
+    debug.sf.enable_gl_backpressure=1 \
+    debug.sf.late.app.duration=13666666 \
+    debug.sf.late.sf.duration=10500000 \
+    debug.sf.predict_hwc_composition_strategy=0 \
+    debug.sf.treat_170m_as_sRGB=1 \
+    debug.sf.use_phase_offsets_as_durations=1 \
+    persist.sys.sf.native_mode=260 \
+    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
+    ro.surface_flinger.game_default_frame_rate_override=60 \
+    ro.surface_flinger.has_HDR_display=true \
+    ro.surface_flinger.has_wide_color_display=true \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
+    ro.surface_flinger.max_virtual_display_dimension=4096 \
+    ro.surface_flinger.protected_contents=true \
+    ro.surface_flinger.set_idle_timer_ms=3000 \
+    ro.surface_flinger.set_touch_timer_ms=200 \
+    ro.surface_flinger.supports_background_blur=1 \
+    ro.surface_flinger.use_color_management=true \
+    ro.surface_flinger.use_content_detection_for_refresh_rate=true \
+    ro.surface_flinger.wcg_composition_dataspace=143261696
+
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.allocator@1.0-service \
@@ -202,8 +348,8 @@ PRODUCT_PACKAGES += \
 $(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit_asteroids)
 
 PRODUCT_PACKAGES += \
-    fstab.qcom \
-    fstab.qcom.vendor_ramdisk \
+    fstab.default \
+    fstab.default.vendor_ramdisk \
     fstab.zram.2g \
     init.asteroids.hw.rc \
     init.asteroids.rc \
@@ -348,6 +494,26 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.system_ext.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries.txt
 
+# QMS
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.data.qms.stx_disable=true
+
+# QC Value Addons
+PRODUCT_ODM_PROPERTIES += \
+    ro.vendor.qti.va_odm.support=1
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.vendor.qti.va_aosp.support=1
+
+# RIL
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.radio.multisim.config=dsds \
+    persist.vendor.radio.apm_sim_not_pwdn=1 \
+    persist.vendor.radio.custom_ecc=1 \
+    persist.vendor.radio.enableadvancedscan=true \
+    persist.vendor.radio.procedure_bytes=SKIP \
+    persist.vendor.radio.sib16_support=1
+
 # Ramdisk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 
@@ -370,7 +536,7 @@ PRODUCT_PACKAGES += \
     android.hardware.secure_element-service.thales
 
 # Security
-BOOT_SECURITY_PATCH := 2025-03-05
+BOOT_SECURITY_PATCH := 2025-06-05
 INIT_BOOT_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 
@@ -430,6 +596,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     nt-telephony-interface \
     telephony-ext
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ril.subscription.types=NV,RUIM \
+    ro.telephony.default_network=26,26 \
+    telephony.lteOnCdmaDevice=1
+
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.rcs.singlereg.feature=1 \
+    telephony.active_modems.max_count=2
 
 # Thermal
 PRODUCT_PACKAGES += \
