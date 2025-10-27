@@ -4,4 +4,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_asteroids.mk
+    $(LOCAL_DIR)/voltage_asteroids.mk
+
+COMMON_LUNCH_CHOICES := \
+    voltage_voltage-user \
+    voltage_volatge-userdebug \
+    voltage_voltage-eng
