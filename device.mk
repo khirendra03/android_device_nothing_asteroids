@@ -286,7 +286,6 @@ PRODUCT_PACKAGES += \
     libGLESv2_angle \
     vulkan.pastel
 
-PRODUCT_VENDOR_PROPERTIES += \
     debug.angle.feature_overrides_enabled=preferLinearFilterForYUV:mapUnspecifiedColorSpaceToPassThrough \
     debug.graphics.game_default_frame_rate.disabled=0 \
     debug.sf.auto_latch_unsignaled=1 \
@@ -314,6 +313,11 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.surface_flinger.use_color_management=true \
     ro.surface_flinger.use_content_detection_for_refresh_rate=true \
     ro.surface_flinger.wcg_composition_dataspace=143261696
+
+# Glyph
+PRODUCT_PACKAGES += \
+    ParanoidGlyphPhone3a \
+    GlyphAdapter
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -545,7 +549,9 @@ PRODUCT_PACKAGES += \
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    kernel/nothing/sm7635
+    kernel/nothing/sm7635 \
+    packages/apps/ParanoidGlyph \
+    packages/apps/GlyphAdapter
 
 # Storage
 PRODUCT_CHARACTERISTICS := nosdcard
